@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+
+:root {
+    --primary-100:#0070C0;
+    --primary-200:#004E86;
+    --primary-300:#6EC3FF;
+    --accent-100:#FFC000;
+    --accent-200:#B38600;
+    --text-100:#333333;
+    --text-200:#737373;
+    --bg-100:#F5F5F5;
+    --bg-200:#E9E9E9;
+    --bg-300:#FFFFFF;
+    --bxs-100: 0px 2px 4px 0px rgba(110, 195, 255, 0.62);
+    --bxs-200: 0px 1px 4px 0px #6EC3FF;
+    --lgr-vertical: linear-gradient(90deg, var(--primary-200) 0%, var(--primary-300) 100%);
+    --lgr-horizontal: linear-gradient(180deg, #004E86 0%, #6EC3FF 100%);
+
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+  text-decoration: none !important;
+}
+
+.domedica__logo {
+  padding: 1.5rem 3rem;
+  gap: 2rem;
+}
+
+.logo {
+  margin-right: 1rem;
+}
+
+.domedica__logo a {
+  display: flex;
+  margin-left: 2rem;
+  font-size: 1.3rem;
+  color: var(--text-100);
+  font-weight: 800;
+  align-items: center;
+}
+
+.Navbar {
+  display: flex;
+  position: sticky;
+  align-items: center;
+  justify-content: space-between;
+  background: transparent;
+}
+
+.section__page {
+  color: var(--text-100);
+  padding: 0 6rem 0 0;
+}
+
+.section__page a {
+  position: relative;
+  font-size: 1.1rem;
+  margin-right: 3rem;
+  font-weight: 400;
+  color: var(--text-100);
+}
+
+/* a.linear {
+  text-decoration: none;
+  cursor: pointer;
+  background: var(--lgr-vertical);
+  padding: .2rem .6rem;
+  color: var(--bg-300);
+  box-shadow: var(--bxs-100);
+  border-radius: 3rem;
+} */
+
+.section__page a::before {
+  content: '';
+  position: absolute;
+  background: var(--lgr-vertical);
+  height: 2px;
+  width: 0;
+  left: 0;
+  bottom: 0;
+  border-radius: 10px;
+  transition: all ease .3s;
+}
+
+.section__page a:hover::before {
+    width: 100%;
+}
+
+.section__page a:hover {
+  color: var(--primary-100);
+}

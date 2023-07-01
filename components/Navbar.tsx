@@ -9,7 +9,7 @@ const Navbar = () => {
                 justify-between items-center sm:px-16 px-6 py-4 '>
                 <div className="domedica__logo">
                     <Link href="/" className='flex justify-center items-center  '>
-                        <Image src='/logo.png' alt='logo' width={61.8} height={58.8} className='logo'/>
+                        <Image src='/logo.png' alt='logo' width={51.8} height={48.8} className='logo'/>
                         <h1 className='ml-5'>MEDIDOM</h1>
                     </Link>
                 </div>
