@@ -39,7 +39,7 @@
 
 .domedica__logo a {
   display: flex;
-  margin-left: 2rem;
+  padding-left: 2rem;
   font-size: 1.3rem;
   color: var(--text-100);
   font-weight: 800;
@@ -67,16 +67,6 @@
   color: var(--text-100);
 }
 
-/* a.linear {
-  text-decoration: none;
-  cursor: pointer;
-  background: var(--lgr-vertical);
-  padding: .2rem .6rem;
-  color: var(--bg-300);
-  box-shadow: var(--bxs-100);
-  border-radius: 3rem;
-} */
-
 .section__page a::before {
   content: '';
   position: absolute;
@@ -95,4 +85,133 @@
 
 .section__page a:hover {
   color: var(--primary-100);
+}
+
+.section__page {
+  color: var(--text-100);
+  padding: 0 6rem 0 0;
+}
+
+.home {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem 3rem 0 5rem;
+}
+
+.home__content {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+}
+
+.info__text h1 {
+  font-size: 3.5rem;
+  font-weight: 600;
+  white-space: pre;
+}
+
+.info__text span {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.info__text p {
+  font-size: 1rem;
+  margin: .5rem 0;
+}
+
+.btn__group {
+  margin-top: 2rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+a.linear {
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  background: var(--lgr-vertical);
+  padding: .568rem 1.5rem;
+  color: var(--bg-300);
+  box-shadow: var(--bxs-100);
+  border-radius: 3rem;
+}
+
+a.outline {
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  background: transparent;
+  padding: .5rem 2.5rem;
+  color: var(--text-100);
+  box-shadow: var(--bxs-100);
+  border-radius: 3rem;
+  border: 1px solid var(--primary-300);
+  z-index: 10;
+}
+
+.img__reference {
+  position: relative;
+  /* display: flex; */
+}
+
+.doctor__img {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  height: 100%;
+  transform: translate(50px, 60px);
+}
+
+.circle__blur {
+  position: absolute;
+  width: 30rem;
+  height: 30rem;
+  top: 0;
+  right: 0;
+  background: var(--primary-300);
+  border-radius: 50%;
+  transform: translate(45px);
+  z-index: -2;
+  filter: blur(130px);
+  opacity: .5;
+}
+
+.circle__tooth {
+  position: absolute;
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 0;
+  top: 0;
+  border-radius: 50%;
+  transform: translate(-90px, 92px);
+  background: var(--bg-100);
+  box-shadow: 0px 4px 4px 0px #6EC3FF;
+}
+
+.circle__heart {
+  position: absolute;
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  top: 0;
+  border-radius: 50%;
+  transform: translate(2px, 240px);
+  background: var(--bg-300);
+  box-shadow: 0px 4px 4px 0px #6EC3FF;
 }
