@@ -1,4 +1,4 @@
-import { About, Medidom } from '@/components'
+import { About, Medidom, Services } from '@/components'
 import Image from 'next/image'
 
 
@@ -7,6 +7,7 @@ export default function Home() {
     <main className='last:w-full h-full'>
       <Medidom/>
       <About/>
+      <Services/>
     </main>
   )
 }
