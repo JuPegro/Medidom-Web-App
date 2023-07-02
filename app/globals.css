@@ -88,3 +88,9 @@ body {
 .social__network a:hover {
   transform: translateY(-10px) ;
 }
+
+.text__gradient {
+  background: var(--lgr-horizontal);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

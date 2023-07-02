@@ -7,7 +7,7 @@ import {FaFacebook, FaInstagram, FaTwitter} from 'react-icons/fa'
 
 const Medidom = () => {
     return (
-    <div className='w-full h-full px-20 py-12 flex justify-between content-center'>
+    <div id='home' className='w-full relative h-full px-20 py-12 flex justify-between content-center'>
         <div className='flex-col flex justify-center content-center'>
             <div className="flex flex-col gap-4 mb-10">
                 <h1 className='mb-5 text-7xl font-bold whitespace-pre'>Cuidando tu salud, <span className='mt-5 text-7xl font-bold block'>en cada rincón.</span></h1>

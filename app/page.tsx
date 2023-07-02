@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <main className='last:w-full h-full'>
       <Medidom/>
-      {/* <About/> */}
+      <About/>
     </main>
   )
 }
