@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
     --primary-100:#0070C0;
@@ -19,56 +22,19 @@
 
 }
 
+/* GLOBAL STYLE */
 
-* {
+body {
   margin: 0;
   padding: 0;
   font-family: 'Poppins', sans-serif;
   box-sizing: border-box;
   text-decoration: none !important;
-  /* color: var(--text-100); */
 }
 
-.domedica__logo {
-  padding: 1.5rem 3rem;
-  gap: 2rem;
-}
+/* NAV ITEMS HOVER CUSTOM BAR */
 
-.logo {
-  margin-right: 1rem;
-}
-
-.domedica__logo a {
-  display: flex;
-  padding-left: 2rem;
-  font-size: 1.3rem;
-  color: var(--text-100);
-  font-weight: 800;
-  align-items: center;
-}
-
-.Navbar {
-  display: flex;
-  position: sticky;
-  align-items: center;
-  justify-content: space-between;
-  background: transparent;
-}
-
-.section__page {
-  color: var(--text-100);
-  padding: 0 6rem 0 0;
-}
-
-.section__page a {
-  position: relative;
-  font-size: 1.1rem;
-  margin-right: 3rem;
-  font-weight: 400;
-  color: var(--text-100);
-}
-
-.section__page a::before {
+.custom__hover a::before {
   content: '';
   position: absolute;
   background: var(--lgr-vertical);
@@ -77,230 +43,32 @@
   left: 0;
   bottom: 0;
   border-radius: 10px;
-  transition: all ease .3s;
+  transition: all ease .5s;
 }
 
-.section__page a:hover::before {
-    width: 100%;
-}
-
-.section__page a:hover {
-  color: var(--primary-100);
-}
-
-.section__page {
-  color: var(--text-100);
-  padding: 0 6rem 0 0;
-}
-
-.home {
-  display: flex;
-  height: 100%;
+.custom__hover a:hover::before {
   width: 100%;
-  position: relative;
-  justify-content: space-between;
-  align-items: center;
-  gap: 2rem;
-  padding: 2rem 5rem 0 5rem;
 }
 
-.home__content {
-  display: flex;
-  flex-direction: column;
-  padding: 1rem 0;
-}
 
-.info__text h1 {
-  font-size: 4.5rem;
-  font-weight: 700;
-  white-space: pre;
-}
+/* BTN 'LOGIN' CUSTOM */
 
-.info__text span {
-  display: block;
-  margin-bottom: 1rem;
-}
-
-.info__text p {
-  font-size: 1.2rem;
-  margin: .5rem 0;
-}
-
-.btn__group {
-  margin-top: 2rem;
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-}
-
-a.linear {
-  text-decoration: none;
-  cursor: pointer;
-  position: relative;
-  background: var(--lgr-vertical);
-  padding: .568rem 1.5rem;
-  color: var(--bg-300);
-  box-shadow: var(--bxs-100);
-  border-radius: 3rem;
-}
-
-a.outline {
-  text-decoration: none;
-  cursor: pointer;
-  position: relative;
-  background: transparent;
-  padding: .5rem 2.5rem;
-  color: var(--text-100);
-  box-shadow: var(--bxs-100);
-  border-radius: 3rem;
+.custom__border {
   border: 1px solid var(--primary-300);
-  z-index: 1;
 }
 
-a.outline::before {
-  content: '';
-  position:absolute ;
-  background: var(--lgr-vertical);
-  height: 100%;
-  width: 0;
-  top: 0;
-  left: 0;
-  border-radius: 3rem;
-  z-index: -1;
-  transition: all .5s;
-}
+/* IMG DOCTOR TRANSITION CUSTOM */
 
-a.outline:hover {
-  color: var(--bg-300);
-}
-
-a.outline:hover::before {
-  width: 100%;
-}
-
-.img__reference {
-  position: relative;
-  display: flex;
-  transform: translateX(-90px);
-}
-
-.doctor__img {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1;
-  height: 100%;
-  transform: translate(50px, 60px);
+.doctor__custom {
   transition: all .7s ease;
 }
 
-.doctor__img:hover {
+.doctor__custom:hover {
   cursor: pointer;
   scale: 1.1;
 }
 
-.circle__blur {
-  position: absolute;
-  width: 40rem;
-  height: 40rem;
-  top: 0;
-  right: 0;
-  background: var(--primary-300);
-  border-radius: 50%;
-  transform: translate(7px, 50px);
-  z-index: -2;
-  filter: blur(130px);
-  opacity: .5;
-}
-
-.circle__tooth {
-  position: absolute;
-  width: 5rem;
-  height: 5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  right: 0;
-  top: 0;
-  border-radius: 50%;
-  transform: translate(-150px, 110px);
-  background: var(--bg-100);
-  box-shadow: 0px 4px 4px 0px #6EC3FF;
-}
-
-.circle__heart {
-  position: absolute;
-  width: 5rem;
-  height: 5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  left: 0;
-  top: 0;
-  border-radius: 50%;
-  transform: translate(2px, 240px);
-  background: var(--bg-300);
-  box-shadow: 0px 4px 4px 0px #6EC3FF;
-}
-
-.circle__tooth .tooth {
-  color: var(--primary-200);
-  width: 2rem;
-}
-
-.circle__heart .heart {
-  color: var(--primary-200);
-  width: 2.5rem;
-}
-
-.info__medidom {
-  position: absolute;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  text-align: center;
-  bottom: 0;
-  padding: 1rem;
-  width: 120%;
-  transform: translate(-70px, 200px);
-  background: var(--bg-300);
-  height: 9rem;
-  z-index: 2;
-  border-radius: 0.9375rem;
-  box-shadow: var(--bxs-200);
-}
-
-.hospital__count {
-  margin: 1rem 0;
-}
-
-.hospital__count .icon {
-  margin-top: 1rem;
-  width: 2.2rem;
-  color: var(--primary-200);
-}
-
-.hospital__count h4 {
-  font-size: 2rem;
-  color: var(--primary-200);
-}
-
-.hospital__count p {
-  margin-bottom: 1rem;
-  font-weight: 500;
-}
-
-.social__network {
-  position: absolute;
-  display: flex;
-  gap: 2rem;
-  left: 0;
-  bottom: 0;
-  padding: 0 0 0 5rem;
-  transform: translateY(10rem);
-}
+/* ICONS SOCIAL CUSTOM */
 
 .social__network a {
   display: flex;
@@ -312,13 +80,11 @@ a.outline:hover::before {
   font-size: 1rem;
   width: 3rem;
   height: 3rem;
-  text-align: center;
   border-radius: 50%;
-}
-
-.social__network a .icon {
   color: var(--bg-300);
-  text-align: center;
-  width: 1.5rem;
+  transition: all .3s ease;
 }
 
+.social__network a:hover {
+  transform: translateY(-10px) ;
+}
