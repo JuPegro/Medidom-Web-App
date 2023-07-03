@@ -19,6 +19,7 @@
     --bxs-200: 0px 1px 4px 0px #6EC3FF;
     --lgr-vertical: linear-gradient(90deg, var(--primary-200) 0%, var(--primary-300) 100%);
     --lgr-horizontal: linear-gradient(180deg, #004E86 0%, #6EC3FF 100%);
+    --lgr-services: linear-gradient(180deg, #6EC3FF 0%, #004E86 100%);
 
 }
 
@@ -48,6 +49,13 @@ body {
 
 .custom__hover a:hover::before {
   width: 100%;
+}
+
+.nav__blur {
+  background: transparent;
+  backdrop-filter: blur(5px);
+  backface-visibility: hidden;
+  transform: translateZ(0px);
 }
 
 
@@ -89,8 +97,16 @@ body {
   transform: translateY(-10px) ;
 }
 
+/* TEXT GRADIENT */
+
 .text__gradient {
   background: var(--lgr-horizontal);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+/* BACK GRADIENTE */
+
+.b__gradient {
+  background: var(--lgr-services);
 }
