@@ -110,3 +110,33 @@ body {
 .b__gradient {
   background: var(--lgr-services);
 }
+
+/* FOOTER ICONS */
+
+.text__gradient a {
+  color: var(--primary-100);
+  transition: all .3s;
+}
+
+.text__gradient a:hover {
+  transform: translateY(-2px) ;
+}
+
+/* FOOTER LINE */
+
+.line {
+  margin-top: 2px;
+  background: #BABABA;
+  border-radius: 50px;
+  height: 1px;
+  width: 74.8%;
+  position: absolute;
+}
+
+/* SERVICES CARD BORDER LINEAR */
+
+.card__custom {
+  padding: 2px;
+  background: var(--lgr-services);
+  border-radius: 1.6rem;
+}
