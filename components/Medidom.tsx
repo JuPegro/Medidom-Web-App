@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBriefcaseMedical, faCertificate, faHeartPulse, faHospital, faHospitalUser, faTooth } from '@fortawesome/free-solid-svg-icons'
 import {FaFacebook, FaInstagram, FaTwitter} from 'react-icons/fa'
+import Link from 'next/link'
 
 
 const Medidom = () => {
@@ -16,8 +17,8 @@ const Medidom = () => {
                 <p className='text-lg'>Consultas en línea y citas presenciales. Tu salud es nuestra prioridad.</p>
             </div>
             <div className='flex gap-5 content-center relative text-center'>
-                <a className='text-center rounded-full text-bg-300 px-6 py-3 shadow-lg shadow-primary-300/50 bg-gradient-to-r from-primary-200 to-primary-300' href="#">¡Registrate!</a>
-                <a className='text-center rounded-full text-text-100 px-8 py-3 bg-transparent custom__border shadow-lg shadow-primary-300/50' href="#">¡Acceder!</a>
+                <Link href='/sign-up' className='text-center rounded-full text-bg-300 px-6 py-3 shadow-lg shadow-primary-300/50 bg-gradient-to-r from-primary-200 to-primary-300'>¡Registrate!</Link>
+                <Link href='/login' className='text-center rounded-full text-text-100 px-8 py-3 bg-transparent custom__border shadow-lg shadow-primary-300/50'>¡Acceder!</Link>
             </div>
         </div>
         <div className='flex relative h-full -translate-x-20'>

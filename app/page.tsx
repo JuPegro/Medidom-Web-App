@@ -1,13 +1,16 @@
-import { About, Medidom, Services } from '@/components'
-import Image from 'next/image'
+import { About, Footer, Medidom, Navbar, Services } from '@/components'
 
 
 export default function Home() {
-  return (
-    <main className=''>
-      <Medidom/>
-      <About/>
-      <Services/>
-    </main>
-  )
+    return (
+        <main className=''>
+            <div className='top-0 sticky z-50'>
+            <Navbar />
+            </div>
+            <Medidom/>
+            <About/>
+            <Services/>
+            <Footer/>
+        </main>
+    )
 }
