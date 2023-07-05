@@ -140,3 +140,11 @@ body {
   background: var(--lgr-services);
   border-radius: 1.6rem;
 }
+
+/* LOGIN AND SIGNUP COVER IMG */
+
+
+.img__cover {
+  background: url(/Background.jpg) no-repeat  center center/cover;
+  
+}
