@@ -3,6 +3,7 @@ import Footer from "./Footer";
 import Medidom from "./Medidom";
 import Navbar from "./Navbar";
 import Services from "./Services";
+import SideBar from "./SideBar";
 
 export {
     Medidom,
@@ -10,4 +11,5 @@ export {
     Navbar,
     About,
     Services,
+    SideBar,
 }

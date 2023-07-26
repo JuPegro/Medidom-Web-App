@@ -5,6 +5,8 @@ import Link from 'next/link'
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faEnvelope, faLock, faIdCard, faUser } from '@fortawesome/free-solid-svg-icons';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignUp = () => {
     const [error, setError] = useState();
@@ -24,7 +26,10 @@ const SignUp = () => {
                 "password": formData.get('password'),
             });
             console.log(res);
-            window.location.href = 'login';
+            toast.success('¡Registro exitoso!');
+            setTimeout(() => {
+                window.location.href = 'login';
+            }, 6000);
         } catch (error) {
             console.log(error);
             if (error instanceof AxiosError) {
@@ -36,6 +41,9 @@ const SignUp = () => {
 
     return (
         <div className='img__cover w-full min-h-screen flex box-border justify-center content-center items-center'>
+            <div className=" z-50">
+            <ToastContainer />
+            </div>
             <div className='w-[40rem] h-[43rem] flex relative flex-col gap-1 justify-center content-center items-center rounded-3xl shadow-lg shadow-primary-300'>
                 <div className='absolute top-0 p-5 -translate-y-20 bg-bg-300 rounded-full shadow-lg shadow-primary-300 flex justify-center content-center items-center'>
                     <Image src='/logo.png' alt='logo' width={105.8} height={105.8} className=''/>

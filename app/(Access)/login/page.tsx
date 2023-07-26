@@ -24,7 +24,7 @@ const Login = () => {
                 "password": formData.get('password'),
             });
             console.log(res);
-            router.push('/');
+            router.push('/dashboard/home');
         } catch (error) {
             console.log(error);
             if (error instanceof AxiosError) {
