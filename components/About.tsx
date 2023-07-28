@@ -9,8 +9,8 @@ const About = () => {
         <div id='about' className='w-full h-full px-20 pt-48 pb-12 flex justify-between content-center items-center relative mt-56'>
             <div className='relative'>
                 <div className='flex relative items-center content-center translate-x-10'>
-                    <Image src='/Doctor.png' alt='dotor' width={540} height={530} className='doctor__custom  -translate-y-8 translate-x-3'/>
-                    <Image src='/polygon.png' alt='polygon' width={500} height={510} className='absolute -z-10'/>
+                    <Image src='/Doctor.png' alt='dotor' width={540} height={530} className='doctor__custom  -translate-y-8 translate-x-3' priority/>
+                    <Image src='/polygon.png' alt='polygon' width={500} height={510} className='absolute -z-10' priority/>
                 </div>
                 <div className='absolute shadow-lg shadow-primary-300/50 top-0 right-0 translate-x-36 translate-y-32 rounded-2xl bg-bg-300 w-60 h-24 flex justify-evenly content-center items-center'>
                     <FontAwesomeIcon icon={faCircleCheck} className='w-14 text-primary-200'/>

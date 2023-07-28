@@ -1,7 +1,7 @@
 "use client"
 import Link from 'next/link'
 import axios, {AxiosError} from 'axios';
-import React, { FormEvent, useState } from 'react'
+import React, { FormEvent, useState, useEffect } from 'react'
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
@@ -12,6 +12,12 @@ const Login = () => {
 
     const [error, setError] = useState();
     const router = useRouter();
+
+    useEffect(() => {
+    // Redirigir a la página de inicio de sesión si no hay un userID en el localStorage
+    localStorage.removeItem('token');
+    localStorage.removeItem('userID');
+});
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -24,6 +30,12 @@ const Login = () => {
                 "password": formData.get('password'),
             });
             console.log(res);
+            const { token, user } = res.data.data;
+
+            localStorage.setItem('token', token);
+            localStorage.setItem('userID', user.id);
+            localStorage.setItem('Username', user.firstName + user.lastName)
+
             router.push('/dashboard/home');
         } catch (error) {
             console.log(error);
@@ -34,13 +46,13 @@ const Login = () => {
     }
     return (
         <div className='img__cover w-full min-h-screen flex box-border justify-center content-center items-center'>
-            <div className='w-[40rem] h-[32rem] flex relative flex-col gap-5 justify-center content-center items-center rounded-3xl shadow-lg shadow-primary-300'>
+            <div className='w-[40rem] h-[36rem] flex relative flex-col gap-5 justify-center content-center items-center rounded-3xl shadow-lg shadow-primary-300'>
                 <div className='absolute top-0 p-5 -translate-y-20 bg-bg-300 rounded-full shadow-lg shadow-primary-300 flex justify-center content-center items-center'>
-                    <Image src='/logo.png' alt='logo' width={105.8} height={105.8} className=''/>
+                    <Image src='/logo.png' alt='logo' width={105.8} height={105.8} priority/>
                 </div>
                 <h3 className='-mt-6 text-3xl text-primary-200 font-bold'>Iniciar sesión</h3>
                 <form onSubmit={handleSubmit} className='flex w-10/12 flex-col mt-4 justify-start relative content-start items-start' action='' method='POST'>
-                {error && <div className='bg-red-500 text-white p-2 mb-2'>{error}</div>}
+                {error && <div className='font-light italic text-xs text-primary-300 mb-4'>{error}</div>}
                     <div className='w-full flex relative content-center flex-col gap-4'>
                         <span className='font-medium text-primary-100'>Correo electronico</span>
                         <FontAwesomeIcon icon={faEnvelope} className='w-6 text-primary-200 absolute translate-y-[3.1rem] translate-x-3'/>

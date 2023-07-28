@@ -6,15 +6,25 @@ import { AiOutlineHome } from "react-icons/ai";
 import { IoPersonOutline } from "react-icons/io5";
 import { TbMessageCircle2 } from "react-icons/tb";
 import { FiLogOut } from "react-icons/fi";
+import { useRouter } from 'next/navigation';
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { PiStethoscopeFill, PiWheelchairDuotone, PiCalendarBlankDuotone, PiChartLine } from "react-icons/pi";
 
 const SideBar = () => {
 
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+    const router = useRouter();
 
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
+    };
+
+    const handleLogout = () => {
+        // Borrar la información del usuario almacenada en el localStorage
+        localStorage.removeItem('token');
+        localStorage.removeItem('userID');
+    
+        router.push('/login');
     };
 
     return (
@@ -51,7 +61,8 @@ const SideBar = () => {
                 </div>
             </div>
             <div className='ml-9 bottom-24 absolute items-center'>
-                <Link className='side__link flex text-center items-center gap-5 font-medium text-base text-text-200' href='/'><FiLogOut className='text-text-200 icon' size='24'/>LogOut</Link>
+                <button className='side__link flex text-center items-center gap-5 font-medium text-base text-text-200' onClick={handleLogout}><FiLogOut className='text-text-200 icon' size='24'/>LogOut</button>
+                {/* <Link className='side__link flex text-center items-center gap-5 font-medium text-base text-text-200' href='/'><FiLogOut className='text-text-200 icon' size='24'/>LogOut</Link> */}
             </div>
         </div>
     )

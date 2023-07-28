@@ -69,6 +69,8 @@ body {
 
 .doctor__custom {
   transition: all .7s ease;
+  height: auto;
+  width: auto;
 }
 
 .doctor__custom:hover {

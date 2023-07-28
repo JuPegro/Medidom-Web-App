@@ -8,7 +8,7 @@ const Footer = () => {
     <div id='help' className='w-full flex content-center justify-between items-center h-full px-60 pt-12 pb-5 mt-64 relative'>
       <div className='flex flex-col gap-5'>
         <Link href="/" className='flex content-center items-center'>
-          <Image src='/logo.png' alt='logo' width={30.8} height={30.8} className=''/>
+          <Image priority src='/logo.png' alt='logo' width={30.8} height={30.8} className=''/>
         </Link>
         <h6 className='text-sm font-normal'>
           © 2023 JuPegro | Instituto Tecnologico de las Americas | ITLA

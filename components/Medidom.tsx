@@ -22,7 +22,7 @@ const Medidom = () => {
             </div>
         </div>
         <div className='flex relative h-full -translate-x-20'>
-            <Image src='/Home.png' alt='dotors' width={800} height={810} className='flex content-center overflow-visible justify-center h-full translate-y-8 translate-x-5 doctor__custom'/>
+            <Image src='/Home.png' alt='dotors' width={800} height={810} className='flex content-center overflow-visible justify-center h-full translate-y-8 translate-x-5 doctor__custom' priority/>
             <div className='absolute overflow-visible w-full h-full rounded-full -z-10 blur-3xl opacity-50 translate-y-14 translate-x-8 top-0 right-0 bg-primary-300'></div>
             <div className='flex content-center justify-center translate-y-28 -translate-x-52 shadow-lg shadow-primary-300 right-0 top-0 bg-bg-300 absolute w-20 h-20 rounded-full'>
                 <FontAwesomeIcon icon={faTooth} beat className='w-12 text-primary-200'/>
