@@ -31,17 +31,17 @@ export default function DashboardLayout({
               <option value="opcion3">Frc </option>
             </select>
           </div>
-          <div className="bg-bg-200 absolute right-0 p-3 -translate-x-[22.2rem] rounded-lg flex items-center">
+          <div className="bg-bg-200 absolute right-0 p-3 -translate-x-[32.2rem] rounded-lg flex items-center">
             <button><FaSun className='text-primary-200 icon' size='24'/></button>
           </div>
-          <div className="bg-bg-200 absolute right-0 __line__  -translate-x-60 p-3 rounded-lg flex items-center">
+          <div className="bg-bg-200 absolute right-0 __line__  -translate-x-96 p-3 rounded-lg flex items-center">
             <FaCircle className='text-accent-100 translate-x-3 -translate-y-[6px] absolute icon' size='8'/>
             <button><IoMdNotificationsOutline className='text-primary-200 icon' size='24'/></button>
           </div>
-          <div className="flex gap-3 items-center mr-6">
+          <div className="flex gap-3 items-center -translate-x-32 mr-6">
             <p className=' text-text-100 font-medium mr-3'>JuPegro._</p>
             <Image src='/paisaje.jpg' alt='user__photo' width={40} height={20} id='img' className='img rounded-3xl'/>
-            <div className="absolute right-0 -translate-x-[19.7px] profile__circle"></div>
+            <div className="absolute right-0 translate-x-[0.28rem] profile__circle"></div>
           </div>
         </nav>
         {children}
