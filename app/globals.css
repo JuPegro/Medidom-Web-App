@@ -58,6 +58,10 @@ body {
   transform: translateZ(0px);
 }
 
+.active__link {
+  color: var(--primary-200);
+}
+
 
 /* BTN 'LOGIN' CUSTOM */
 

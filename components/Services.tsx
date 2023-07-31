@@ -4,7 +4,7 @@ import { faTooth } from '@fortawesome/free-solid-svg-icons'
 
 const Services = () => {
     return (
-        <div id='services' className='flex flex-col w-full h-full px-20 py-12 mt-20 relative'>
+        <section id='services' className='flex flex-col w-full h-full px-20 py-12 mt-20 relative'>
             <h2 className='text__gradient translate-x-14 text-5xl font-bold'>Servicios</h2>
             <div className='flex mt-16 content-center items-center justify-around'>
                 <div className='card__custom'>
@@ -84,7 +84,7 @@ const Services = () => {
                     <a className='absolute right-0 top-0 shadow-lg shadow-text-100/70 bg-bg-300 px-6 py-3 font-semibold translate-x-2 translate-y-2 rounded-full text-text-100' href="/">ENCUENTRA TU RESPUESTA</a>
                 </div>
             </div>
-        </div>
+        </section>
     )
 }
 

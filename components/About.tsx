@@ -6,7 +6,7 @@ import { faCircleCheck, faClock } from '@fortawesome/free-solid-svg-icons'
 
 const About = () => {
     return (
-        <div id='about' className='w-full h-full px-20 pt-48 pb-12 flex justify-between content-center items-center relative mt-56'>
+        <section id='about' className='w-full h-full px-20 pt-32 pb-12 flex justify-between content-center items-center relative mt-56'>
             <div className='relative'>
                 <div className='flex relative items-center content-center translate-x-10'>
                     <Image src='/Doctor.png' alt='dotor' width={540} height={530} className='doctor__custom  -translate-y-8 translate-x-3' priority/>
@@ -39,7 +39,7 @@ const About = () => {
                     </p>
                 <p className='text-primary-100 text-xl font-bold text__gradient mt-2'>"¡Bienvenido a MediDom, donde tu salud está en buenas manos!"</p>
             </div>
-        </div>
+        </section>
     )
 }
 

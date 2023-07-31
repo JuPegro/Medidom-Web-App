@@ -5,7 +5,7 @@ import {FaFacebook, FaInstagram, FaTwitter} from 'react-icons/fa'
 
 const Footer = () => {
   return (
-    <div id='help' className='w-full flex content-center justify-between items-center h-full px-60 pt-12 pb-5 mt-64 relative'>
+    <section id='help' className='w-full flex content-center justify-between items-center h-full px-60 pt-12 pb-5 mt-64 relative'>
       <div className='flex flex-col gap-5'>
         <Link href="/" className='flex content-center items-center'>
           <Image priority src='/logo.png' alt='logo' width={30.8} height={30.8} className=''/>
@@ -29,7 +29,7 @@ const Footer = () => {
           <a target='_blank' className='text__gradient' href="https://twitter.com/home"><FaTwitter size='14'/></a>
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 

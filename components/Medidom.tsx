@@ -8,7 +8,7 @@ import Link from 'next/link'
 
 const Medidom = () => {
     return (
-    <div id='home' className='w-full relative h-full px-20 py-12 flex justify-between content-center'>
+    <section id='home' className='w-full relative h-full px-20 py-12 flex justify-between content-center'>
         <div className='flex-col flex justify-center content-center'>
             <div className="flex flex-col gap-4 mb-10">
                 <h1 className='mb-5 text-7xl font-bold whitespace-pre'>Cuidando tu salud, <span className='mt-5 text-7xl font-bold block'>en cada rincón.</span></h1>
@@ -58,7 +58,7 @@ const Medidom = () => {
             <a target='_blank' className='flex justify-center content-center bg-gradient-to-r from-primary-200 to-primary-300 text-center text-base shadow-lg shadow-primary-300 bg-slate-600 w-12 h-12 rounded-full' href="https://www.instagram.com/"><FaInstagram size='29'/></a>
             <a target='_blank' className='flex justify-center content-center bg-gradient-to-r from-primary-200 to-primary-300 text-center text-base shadow-lg shadow-primary-300 bg-slate-600 w-12 h-12 rounded-full' href="https://twitter.com/home"><FaTwitter size='25'/></a>
         </div>
-    </div>
+    </section>
     )
 }
 
