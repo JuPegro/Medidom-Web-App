@@ -38,10 +38,9 @@ export default function DashboardLayout({
             <FaCircle className='text-accent-100 translate-x-3 -translate-y-[6px] absolute icon' size='8'/>
             <button><IoMdNotificationsOutline className='text-primary-200 icon' size='24'/></button>
           </div>
-          <div className="flex gap-3 items-center -translate-x-32 mr-6">
+          <div className="flex gap-3 items-center -translate-x-32 mr-5">
             <p className=' text-text-100 font-medium mr-3'>JuPegro._</p>
-            <Image src='/paisaje.jpg' alt='user__photo' width={40} height={20} id='img' className='img rounded-3xl'/>
-            <div className="absolute right-0 translate-x-[0.28rem] profile__circle"></div>
+            <Image src='/paisaje.jpg' alt='user__photo' width={40} height={20} id='img' className='img rounded-3xl border-2 border-primary-300 bg-primary-300'/>
           </div>
         </nav>
         {children}

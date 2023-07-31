@@ -8,7 +8,7 @@ import { TbMessageCircle2 } from "react-icons/tb";
 import { FiLogOut } from "react-icons/fi";
 import { useRouter, usePathname } from 'next/navigation';
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
-import { PiStethoscopeFill, PiWheelchairDuotone, PiCalendarBlankDuotone, PiChartLine } from "react-icons/pi";
+import { PiStethoscopeFill, PiStethoscopeBold , PiWheelchairDuotone, PiCalendarBlankDuotone, PiChartLine } from "react-icons/pi";
 
 const SideBar = () => {
 
@@ -26,13 +26,14 @@ const SideBar = () => {
         'activeIcon': <IoPerson className='text-text-200 icon' size='24'/>,
         'title':'Perfil'
         },
-        {'link': '/dashboard/kks', 
+        {'link': '/dashboard/doctor', 
         'icon': <PiStethoscopeFill className='text-text-200 icon' size='24'/>,
+        'activeIcon': <PiStethoscopeBold className='text-text-200 icon' size='24'/>,
         'title':'Doctores'
         },
         {'link': '/dashboard/ssss', 
         'icon': <PiWheelchairDuotone className='text-text-200 icon' size='24'/>,
-        'title':'Pcientes'
+        'title':'Pacientes'
         },
         {'link': '/dashboard/ssssaa', 
         'icon': <PiCalendarBlankDuotone className='text-text-200 icon' size='24'/>,

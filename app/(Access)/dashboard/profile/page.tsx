@@ -14,8 +14,7 @@ const page = () => {
             <div className="flex">
                 <div className="flex flex-col items-center top-0 text-center gap-6 justify-center mt-12 h-[45rem] w-[24rem] rounded-xl border-2 shadow-lg shadow-primary-300 border-primary-300">
                     <div className="flex items-center justify-center relative">
-                        <div className="absolute rounded-full border-2 border-primary-300 w-[17rem] h-[17rem]"></div>
-                        <Image src='/paisaje.jpg' alt='user__photo' width={280} height={280} className='w-[16rem] h-[16rem] rounded-full'/>
+                        <Image src='/paisaje.jpg' alt='user__photo' width={280} height={280} className='w-[16rem] h-[16rem] border-2 border-primary-300 p-1 rounded-full'/>
                     </div>
                     <div className="flex flex-col gap-5 text-text-100 py-3">
                         <h3 className='text-3xl font-bold'>JuPegro._</h3>
