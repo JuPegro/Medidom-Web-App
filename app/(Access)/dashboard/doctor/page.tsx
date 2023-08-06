@@ -1,25 +1,54 @@
 'use client'
-import React, { useState } from 'react';
-import { BiPlus, BiSearch, BiSolidPhone } from "react-icons/bi";
-import { CgEditUnmask } from "react-icons/cg";
-import { IoClose } from "react-icons/io5";
+import React, { useState, useEffect  } from 'react';
+import { BiPlus, BiSearch, BiSolidPhone, BiSolidEdit } from "react-icons/bi";
 import { MdEmail } from "react-icons/md";
 import Image from 'next/image';
 import { FaHospital } from "react-icons/fa";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { ModalDoctorInfo } from '@/components';
+import axios, { AxiosResponse } from 'axios';
+
 
 const page = () => {
-    
+
+    const [pagina, setPagina] = useState(1);
+    const [porPagina, setPorPagina] = useState();
+
+    // const maximo = Pokemons.lenght / porPagina;
+
     const [isModalOpen, setIsModalOpen] = useState(false);
+    // const [selectedDoctorId, setSelectedDoctorId] = useState<string | null>(null);
 
     const handleOpenModal = () => {
+        const doctorId = null;
+        // setSelectedDoctorId(doctorId);
         setIsModalOpen(true);
     };
     
     const handleCloseModal = () => {
         setIsModalOpen(false);
     };
+
+    const [userData, setUserData] = useState<any | null>(null);
+
+    useEffect(() => {
+        const getResquestWithAuthorization = async () => {
+            try {
+                const response: AxiosResponse<any> = await axios.get('https://medi-dom-api.up.railway.app/api/v1/user', {
+                    headers: {
+                        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJqZG9lQGRvbWFpbi5jb20iLCJpYXQiOjE2OTEzMzQ2MjgsImV4cCI6MTY5MTQyMTAyOH0.a0sAqyeQHU7RJFeLxb5vG5pdNmIgz3BN_sU1K1Uhj_s`,
+                }
+            });
+                console.log('API Response:', response.data);
+                setUserData(response.data.data);
+                console.log(response.data.data);
+            } catch (error) {
+                console.error('API Error:', error);
+            }
+        };
+    
+        getResquestWithAuthorization();
+    }, []);
 
     return (
         <div className="mx-20 w-11/12">
@@ -45,19 +74,28 @@ const page = () => {
                         <BiSearch className='mr-5 translate-x-14 text-primary-100' size='22'/>
                         <input type="text" placeholder='@nombre-doctor' className='py-2 pl-11 w-60 text-sm text-primary-200 border outline-none border-primary-300 shadow-lg shadow-primary-300 rounded-xl'/>
                     </div>
-                    <button className='b__gradient rounded-full shadow-lg shadow-primary-300'><BiPlus className=' text-bg-300 font-bold w-[2.4rem]' size='24'/></button>
+                    <button onClick={handleOpenModal} className='b__gradient rounded-full shadow-lg shadow-primary-300'><BiPlus className=' text-bg-300 font-bold w-[2.4rem]' size='24'/></button>
                 </div>
             </div>
             <div className="grid grid-cols-5 place-content-center gap-x-[1px] mt-24 gap-y-[4.8rem] ">
-                <div className="flex border relative justify-center shadow-lg shadow-primary-300 flex-col items-center border-primary-300 w-[14.5rem] h-56 rounded-2xl">
+            {userData ? (
+                <div>
+                <p>Nombre: {userData.email}</p>
+                <p>Email: {userData[0].id}</p>
+                {/* Mostrar otros datos según la estructura de userData */}
+                </div>
+            ) : (
+                <p>Cargando datos...</p>
+            )}
+            
+            <div className="flex border relative justify-center shadow-lg shadow-primary-300 flex-col items-center border-primary-300 w-[14.5rem] h-56 rounded-2xl">
                     <div className="absolute top-0 -translate-y-16">
                         <Image src='/paisaje.jpg' width={500} height={500} alt='img' className='w-32 h-32 border-[3px] border-primary-300 p-[1px] rounded-full'></Image>
                     </div>
                     <div className="flex top-4 justify-between absolute gap-40">
                     <button onClick={handleOpenModal}>
-                        <CgEditUnmask className="text-primary-100" size="22" />
+                        <BiSolidEdit className="text-primary-100" size="22" />
                     </button>
-                        <button><IoClose className=' text-primary-100' size='22'/></button>
                     </div>
                     <div className="flex flex-col relative mt-12 text-center mb-4 gap-2">
                         <p className=' text-text-100 font-bold text-lg'>Julio Peguero</p>

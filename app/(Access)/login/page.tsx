@@ -9,7 +9,6 @@ import { useRouter } from 'next/navigation';
 
 
 const Login = () => {
-
     const [error, setError] = useState();
     const router = useRouter();
 
@@ -25,7 +24,7 @@ const Login = () => {
         const formData = new FormData(e.currentTarget)
 
         try {
-            const res = await axios.post('https://medi-dom-api-production.up.railway.app/api/v1/auth/sign-in', {
+            const res = await axios.post('https://medi-dom-api.up.railway.app/api/v1/auth/sign-in', {
                 "email": formData.get('email'),
                 "password": formData.get('password'),
             });

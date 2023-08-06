@@ -260,18 +260,19 @@ div.profile__circle {
 
 /* PERSONALIZACION DE INPUT FILE */
 
-/* Estilos para replicar el input file como en Bootstrap */
-
-/* Estilos para ocultar el input de tipo "file" */
-.custom-file input[type="file"] {
-  position: absolute;
-  left: -9999px;
-}
-
-/* Estilos para el contenedor del input file */
 .custom-file {
   background: transparent;
   border-radius: 0.5rem;
+  outline: none;
+}
+
+::-webkit-file-upload-button {
+  color: var(--bg-300);
+  background: var(--lgr-services);
+  border: none;
+  border-radius: 0.5rem 0rem 0rem 0.5rem;
+  height: 2.75rem;
+  font-weight: 400;
 }
 
 
