@@ -256,3 +256,22 @@ div.profile__circle {
   border: 2px solid var(--primary-100);
   border-radius: 100%;
 }
+
+
+/* PERSONALIZACION DE INPUT FILE */
+
+/* Estilos para replicar el input file como en Bootstrap */
+
+/* Estilos para ocultar el input de tipo "file" */
+.custom-file input[type="file"] {
+  position: absolute;
+  left: -9999px;
+}
+
+/* Estilos para el contenedor del input file */
+.custom-file {
+  background: transparent;
+  border-radius: 0.5rem;
+}
+
+

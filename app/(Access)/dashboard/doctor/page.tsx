@@ -1,4 +1,5 @@
-import React from 'react'
+'use client'
+import React, { useState } from 'react';
 import { BiPlus, BiSearch, BiSolidPhone } from "react-icons/bi";
 import { CgEditUnmask } from "react-icons/cg";
 import { IoClose } from "react-icons/io5";
@@ -6,8 +7,20 @@ import { MdEmail } from "react-icons/md";
 import Image from 'next/image';
 import { FaHospital } from "react-icons/fa";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
+import { ModalDoctorInfo } from '@/components';
 
 const page = () => {
+    
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleOpenModal = () => {
+        setIsModalOpen(true);
+    };
+    
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+    };
+
     return (
         <div className="mx-20 w-11/12">
             <div className='flex gap-2 text-4xl mt-10'>
@@ -41,250 +54,9 @@ const page = () => {
                         <Image src='/paisaje.jpg' width={500} height={500} alt='img' className='w-32 h-32 border-[3px] border-primary-300 p-[1px] rounded-full'></Image>
                     </div>
                     <div className="flex top-4 justify-between absolute gap-40">
-                        <button><CgEditUnmask className=' text-primary-100' size='22'/></button>
-                        <button><IoClose className=' text-primary-100' size='22'/></button>
-                    </div>
-                    <div className="flex flex-col relative mt-12 text-center mb-4 gap-2">
-                        <p className=' text-text-100 font-bold text-lg'>Julio Peguero</p>
-                        <p className='text-sm -px-2 py-1 text-bg-300 bg-primary-100 rounded-lg'>Cirujano</p>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                        <div className="flex text-xs gap-2 text-text-200">
-                            <BiSolidPhone className=' text-text-200' size='14'/>
-                            <p>(809) 255-1547</p>
-                        </div>
-                        <div className="flex text-xs gap-2 text-text-200">
-                            <MdEmail className=' text-text-200' size='14'/>
-                            <p>Elcirujano@gmail.com</p>
-                        </div>
-                        <div className="flex text-xs gap-2 text-text-200">
-                            <FaHospital className=' text-text-200' size='14'/>
-                            <p>Dario Contreras, SDE</p>
-                        </div>
-                    </div>
-                </div>
-                <div className="flex border relative justify-center shadow-lg shadow-primary-300 flex-col items-center border-primary-300 w-[14.5rem] h-56 rounded-2xl">
-                    <div className="absolute top-0 -translate-y-16">
-                        <Image src='/paisaje.jpg' width={500} height={500} alt='img' className='w-32 h-32 border-[3px] border-primary-300 p-[1px] rounded-full'></Image>
-                    </div>
-                    <div className="flex top-4 justify-between absolute gap-40">
-                        <button><CgEditUnmask className=' text-primary-100' size='22'/></button>
-                        <button><IoClose className=' text-primary-100' size='22'/></button>
-                    </div>
-                    <div className="flex flex-col relative mt-12 text-center mb-4 gap-2">
-                        <p className=' text-text-100 font-bold text-lg'>Julio Peguero</p>
-                        <p className='text-sm -px-2 py-1 text-bg-300 bg-primary-100 rounded-lg'>Cirujano</p>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                        <div className="flex text-xs gap-2 text-text-200">
-                            <BiSolidPhone className=' text-text-200' size='14'/>
-                            <p>(809) 255-1547</p>
-                        </div>
-                        <div className="flex text-xs gap-2 text-text-200">
-                            <MdEmail className=' text-text-200' size='14'/>
-                            <p>Elcirujano@gmail.com</p>
-                        </div>
-                        <div className="flex text-xs gap-2 text-text-200">
-                            <FaHospital className=' text-text-200' size='14'/>
-                            <p>Dario Contreras, SDE</p>
-                        </div>
-                    </div>
-                </div>
-                <div className="flex border relative justify-center shadow-lg shadow-primary-300 flex-col items-center border-primary-300 w-[14.5rem] h-56 rounded-2xl">
-                    <div className="absolute top-0 -translate-y-16">
-                        <Image src='/paisaje.jpg' width={500} height={500} alt='img' className='w-32 h-32 border-[3px] border-primary-300 p-[1px] rounded-full'></Image>
-                    </div>
-                    <div className="flex top-4 justify-between absolute gap-40">
-                        <button><CgEditUnmask className=' text-primary-100' size='22'/></button>
-                        <button><IoClose className=' text-primary-100' size='22'/></button>
-                    </div>
-                    <div className="flex flex-col relative mt-12 text-center mb-4 gap-2">
-                        <p className=' text-text-100 font-bold text-lg'>Julio Peguero</p>
-                        <p className='text-sm -px-2 py-1 text-bg-300 bg-primary-100 rounded-lg'>Cirujano</p>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                        <div className="flex text-xs gap-2 text-text-200">
-                            <BiSolidPhone className=' text-text-200' size='14'/>
-                            <p>(809) 255-1547</p>
-                        </div>
-                        <div className="flex text-xs gap-2 text-text-200">
-                            <MdEmail className=' text-text-200' size='14'/>
-                            <p>Elcirujano@gmail.com</p>
-                        </div>
-                        <div className="flex text-xs gap-2 text-text-200">
-                            <FaHospital className=' text-text-200' size='14'/>
-                            <p>Dario Contreras, SDE</p>
-                        </div>
-                    </div>
-                </div>
-                <div className="flex border relative justify-center shadow-lg shadow-primary-300 flex-col items-center border-primary-300 w-[14.5rem] h-56 rounded-2xl">
-                    <div className="absolute top-0 -translate-y-16">
-                        <Image src='/paisaje.jpg' width={500} height={500} alt='img' className='w-32 h-32 border-[3px] border-primary-300 p-[1px] rounded-full'></Image>
-                    </div>
-                    <div className="flex top-4 justify-between absolute gap-40">
-                        <button><CgEditUnmask className=' text-primary-100' size='22'/></button>
-                        <button><IoClose className=' text-primary-100' size='22'/></button>
-                    </div>
-                    <div className="flex flex-col relative mt-12 text-center mb-4 gap-2">
-                        <p className=' text-text-100 font-bold text-lg'>Julio Peguero</p>
-                        <p className='text-sm -px-2 py-1 text-bg-300 bg-primary-100 rounded-lg'>Cirujano</p>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                        <div className="flex text-xs gap-2 text-text-200">
-                            <BiSolidPhone className=' text-text-200' size='14'/>
-                            <p>(809) 255-1547</p>
-                        </div>
-                        <div className="flex text-xs gap-2 text-text-200">
-                            <MdEmail className=' text-text-200' size='14'/>
-                            <p>Elcirujano@gmail.com</p>
-                        </div>
-                        <div className="flex text-xs gap-2 text-text-200">
-                            <FaHospital className=' text-text-200' size='14'/>
-                            <p>Dario Contreras, SDE</p>
-                        </div>
-                    </div>
-                </div>
-                <div className="flex border relative justify-center shadow-lg shadow-primary-300 flex-col items-center border-primary-300 w-[14.5rem] h-56 rounded-2xl">
-                    <div className="absolute top-0 -translate-y-16">
-                        <Image src='/paisaje.jpg' width={500} height={500} alt='img' className='w-32 h-32 border-[3px] border-primary-300 p-[1px] rounded-full'></Image>
-                    </div>
-                    <div className="flex top-4 justify-between absolute gap-40">
-                        <button><CgEditUnmask className=' text-primary-100' size='22'/></button>
-                        <button><IoClose className=' text-primary-100' size='22'/></button>
-                    </div>
-                    <div className="flex flex-col relative mt-12 text-center mb-4 gap-2">
-                        <p className=' text-text-100 font-bold text-lg'>Julio Peguero</p>
-                        <p className='text-sm -px-2 py-1 text-bg-300 bg-primary-100 rounded-lg'>Cirujano</p>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                        <div className="flex text-xs gap-2 text-text-200">
-                            <BiSolidPhone className=' text-text-200' size='14'/>
-                            <p>(809) 255-1547</p>
-                        </div>
-                        <div className="flex text-xs gap-2 text-text-200">
-                            <MdEmail className=' text-text-200' size='14'/>
-                            <p>Elcirujano@gmail.com</p>
-                        </div>
-                        <div className="flex text-xs gap-2 text-text-200">
-                            <FaHospital className=' text-text-200' size='14'/>
-                            <p>Dario Contreras, SDE</p>
-                        </div>
-                    </div>
-                </div>
-                <div className="flex border relative justify-center shadow-lg shadow-primary-300 flex-col items-center border-primary-300 w-[14.5rem] h-56 rounded-2xl">
-                    <div className="absolute top-0 -translate-y-16">
-                        <Image src='/paisaje.jpg' width={500} height={500} alt='img' className='w-32 h-32 border-[3px] border-primary-300 p-[1px] rounded-full'></Image>
-                    </div>
-                    <div className="flex top-4 justify-between absolute gap-40">
-                        <button><CgEditUnmask className=' text-primary-100' size='22'/></button>
-                        <button><IoClose className=' text-primary-100' size='22'/></button>
-                    </div>
-                    <div className="flex flex-col relative mt-12 text-center mb-4 gap-2">
-                        <p className=' text-text-100 font-bold text-lg'>Julio Peguero</p>
-                        <p className='text-sm -px-2 py-1 text-bg-300 bg-primary-100 rounded-lg'>Cirujano</p>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                        <div className="flex text-xs gap-2 text-text-200">
-                            <BiSolidPhone className=' text-text-200' size='14'/>
-                            <p>(809) 255-1547</p>
-                        </div>
-                        <div className="flex text-xs gap-2 text-text-200">
-                            <MdEmail className=' text-text-200' size='14'/>
-                            <p>Elcirujano@gmail.com</p>
-                        </div>
-                        <div className="flex text-xs gap-2 text-text-200">
-                            <FaHospital className=' text-text-200' size='14'/>
-                            <p>Dario Contreras, SDE</p>
-                        </div>
-                    </div>
-                </div>
-                <div className="flex border relative justify-center shadow-lg shadow-primary-300 flex-col items-center border-primary-300 w-[14.5rem] h-56 rounded-2xl">
-                    <div className="absolute top-0 -translate-y-16">
-                        <Image src='/paisaje.jpg' width={500} height={500} alt='img' className='w-32 h-32 border-[3px] border-primary-300 p-[1px] rounded-full'></Image>
-                    </div>
-                    <div className="flex top-4 justify-between absolute gap-40">
-                        <button><CgEditUnmask className=' text-primary-100' size='22'/></button>
-                        <button><IoClose className=' text-primary-100' size='22'/></button>
-                    </div>
-                    <div className="flex flex-col relative mt-12 text-center mb-4 gap-2">
-                        <p className=' text-text-100 font-bold text-lg'>Julio Peguero</p>
-                        <p className='text-sm -px-2 py-1 text-bg-300 bg-primary-100 rounded-lg'>Cirujano</p>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                        <div className="flex text-xs gap-2 text-text-200">
-                            <BiSolidPhone className=' text-text-200' size='14'/>
-                            <p>(809) 255-1547</p>
-                        </div>
-                        <div className="flex text-xs gap-2 text-text-200">
-                            <MdEmail className=' text-text-200' size='14'/>
-                            <p>Elcirujano@gmail.com</p>
-                        </div>
-                        <div className="flex text-xs gap-2 text-text-200">
-                            <FaHospital className=' text-text-200' size='14'/>
-                            <p>Dario Contreras, SDE</p>
-                        </div>
-                    </div>
-                </div>
-                <div className="flex border relative justify-center shadow-lg shadow-primary-300 flex-col items-center border-primary-300 w-[14.5rem] h-56 rounded-2xl">
-                    <div className="absolute top-0 -translate-y-16">
-                        <Image src='/paisaje.jpg' width={500} height={500} alt='img' className='w-32 h-32 border-[3px] border-primary-300 p-[1px] rounded-full'></Image>
-                    </div>
-                    <div className="flex top-4 justify-between absolute gap-40">
-                        <button><CgEditUnmask className=' text-primary-100' size='22'/></button>
-                        <button><IoClose className=' text-primary-100' size='22'/></button>
-                    </div>
-                    <div className="flex flex-col relative mt-12 text-center mb-4 gap-2">
-                        <p className=' text-text-100 font-bold text-lg'>Julio Peguero</p>
-                        <p className='text-sm -px-2 py-1 text-bg-300 bg-primary-100 rounded-lg'>Cirujano</p>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                        <div className="flex text-xs gap-2 text-text-200">
-                            <BiSolidPhone className=' text-text-200' size='14'/>
-                            <p>(809) 255-1547</p>
-                        </div>
-                        <div className="flex text-xs gap-2 text-text-200">
-                            <MdEmail className=' text-text-200' size='14'/>
-                            <p>Elcirujano@gmail.com</p>
-                        </div>
-                        <div className="flex text-xs gap-2 text-text-200">
-                            <FaHospital className=' text-text-200' size='14'/>
-                            <p>Dario Contreras, SDE</p>
-                        </div>
-                    </div>
-                </div>
-                <div className="flex border relative justify-center shadow-lg shadow-primary-300 flex-col items-center border-primary-300 w-[14.5rem] h-56 rounded-2xl">
-                    <div className="absolute top-0 -translate-y-16">
-                        <Image src='/paisaje.jpg' width={500} height={500} alt='img' className='w-32 h-32 border-[3px] border-primary-300 p-[1px] rounded-full'></Image>
-                    </div>
-                    <div className="flex top-4 justify-between absolute gap-40">
-                        <button><CgEditUnmask className=' text-primary-100' size='22'/></button>
-                        <button><IoClose className=' text-primary-100' size='22'/></button>
-                    </div>
-                    <div className="flex flex-col relative mt-12 text-center mb-4 gap-2">
-                        <p className=' text-text-100 font-bold text-lg'>Julio Peguero</p>
-                        <p className='text-sm -px-2 py-1 text-bg-300 bg-primary-100 rounded-lg'>Cirujano</p>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                        <div className="flex text-xs gap-2 text-text-200">
-                            <BiSolidPhone className=' text-text-200' size='14'/>
-                            <p>(809) 255-1547</p>
-                        </div>
-                        <div className="flex text-xs gap-2 text-text-200">
-                            <MdEmail className=' text-text-200' size='14'/>
-                            <p>Elcirujano@gmail.com</p>
-                        </div>
-                        <div className="flex text-xs gap-2 text-text-200">
-                            <FaHospital className=' text-text-200' size='14'/>
-                            <p>Dario Contreras, SDE</p>
-                        </div>
-                    </div>
-                </div>
-                <div className="flex border relative justify-center shadow-lg shadow-primary-300 flex-col items-center border-primary-300 w-[14.5rem] h-56 rounded-2xl">
-                    <div className="absolute top-0 -translate-y-16">
-                        <Image src='/paisaje.jpg' width={500} height={500} alt='img' className='w-32 h-32 border-[3px] border-primary-300 p-[1px] rounded-full'></Image>
-                    </div>
-                    <div className="flex top-4 justify-between absolute gap-40">
-                        <button><CgEditUnmask className=' text-primary-100' size='22'/></button>
+                    <button onClick={handleOpenModal}>
+                        <CgEditUnmask className="text-primary-100" size="22" />
+                    </button>
                         <button><IoClose className=' text-primary-100' size='22'/></button>
                     </div>
                     <div className="flex flex-col relative mt-12 text-center mb-4 gap-2">
@@ -312,6 +84,7 @@ const page = () => {
                 <p className=' bg-bg-300 border shadow-md shadow-primary-300 border-primary-300 py-[2px] px-5 font-black rounded-md text-primary-200'>1</p>
                 <button className='b__gradient py-2 px-2 rounded-md shadow-md shadow-primary-300'><FaArrowRight className=' text-bg-300' size='14'/></button>
             </div>
+            <ModalDoctorInfo isOpen={isModalOpen} onClose={handleCloseModal} />
         </div>
     )
 }

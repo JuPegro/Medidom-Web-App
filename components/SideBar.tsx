@@ -63,7 +63,7 @@ const SideBar = () => {
     };
 
     return (
-        <div className={`bg-white gap-2 text-white h-screen shadow-md`}>
+        <div className={`bg-white gap-2 z-20 text-white h-screen shadow-md`}>
             <div className="flex justify-center items-center gap-3 p-8">
                 <Image src='/Logo.png' alt='dotors' width={45} height={45} className=''/>
                 <h2 className='text-3xl font-extrabold text-text-100'>MEDIDOM</h2>
