@@ -32,7 +32,7 @@ const ModalUserEdit: React.FC<ModalDoctorInfoProps> = ({ isOpen, onClose, select
             });
             console.log('Usuario actualizado:', response.data);
             onClose();
-            router.refresh();
+            window.location.reload();
         } catch (error) {
             console.log('API Error:', error);
             if (axios.isAxiosError(error)) {

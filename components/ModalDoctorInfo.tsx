@@ -59,7 +59,7 @@ console.log(formData)
             console.log('API Response:', res.data)
             console.log(res.data);
             onClose();
-            router.refresh();
+            window.location.reload();
         } catch (error) {
             console.log('API Error:', error);
             if (axios.isAxiosError(error)) {

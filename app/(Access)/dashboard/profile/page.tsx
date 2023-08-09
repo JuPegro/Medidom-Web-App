@@ -1,11 +1,63 @@
-import React from 'react'
+'use client'
+import React, { useState, useEffect } from 'react';
+import axios, { AxiosResponse } from 'axios';
 import Image from 'next/image'
 import { BiSolidUser } from "react-icons/bi";
-import { BsGenderAmbiguous, BsCalendar3, BsPhone, BsPersonVcard } from "react-icons/bs";
+import { BsCalendar3, BsPhone, BsPersonVcard } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi";
 
 
 const page = () => {
+
+    const [userData, setUserData] = useState<any>({});
+    const [descriptionData, SetDescription] = useState<any>({});
+
+    useEffect(() => {
+        const getResquestWithAuthorization = async () => {
+            try {
+                const response: AxiosResponse<any> = await axios.get('https://medi-dom-api.up.railway.app/api/v1/user?id=15', {
+                    headers: {
+                        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJqZG9lQGRvbWFpbi5jb20iLCJpYXQiOjE2OTE1NDA5NjQsImV4cCI6MTY5MTYyNzM2NH0.hKNUwZamQ6T4dsjB0tmj2q82NI6L_VVUS5XNR8xnwPA`,
+                }
+            });
+                console.log('API Response:', response.data);
+                setUserData(response.data.data);
+                console.log(response.data.data);
+                SetDescription(response.data.data.role)
+            } catch (error) {
+                console.error('API Error:', error);
+            }
+        };
+    
+        getResquestWithAuthorization();
+    }, []);
+
+    const [error, setError] = useState();
+    const [updatedUserData, setUpdatedUserData] = useState({});
+    const handleUpdate = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        
+        const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJqZG9lQGRvbWFpbi5jb20iLCJpYXQiOjE2OTE1MzU2MDgsImV4cCI6MTY5MTYyMjAwOH0.pcV1b899nC2uhUf50Adl-c2RIpPV1G9v5F99-jlNvZY'; // Reemplaza con tu token de autenticación
+        const headers = {
+            'Authorization': `Bearer ${accessToken}`
+        };
+    
+        try {
+            const response = await axios.patch(`https://medi-dom-api.up.railway.app/api/v1/user/15`, updatedUserData, {
+                headers: headers
+            });
+            console.log('Usuario actualizado:', response.data);
+            window.location.reload();
+        } catch (error) {
+            console.log('API Error:', error);
+            if (axios.isAxiosError(error)) {
+                console.log('Error Response:', error.response?.data);
+                setError(error.response?.data.message);
+            }
+        }
+    };
+
+
     return (
         <div className="mx-20 w-11/12">
             <div className='flex gap-2 text-4xl mt-10'>
@@ -17,63 +69,65 @@ const page = () => {
                         <Image src='/paisaje.jpg' alt='user__photo' width={280} height={280} className='w-[16rem] h-[16rem] border-2 border-primary-300 p-1 rounded-full'/>
                     </div>
                     <div className="flex flex-col gap-5 text-text-100 py-3">
-                        <h3 className='text-3xl font-bold'>JuPegro._</h3>
-                        <p className='text-lg flex items-center justify-between b__gradient px-7 py-3 rounded-full text-bg-300'><BiSolidUser className='mr-2' size='20'/>ADMINSTRADOR</p>
+                        <h3 className='text-3xl font-bold'>{userData.firstName} {userData.lastName}</h3>
+                        <p className='text-lg flex items-center justify-between b__gradient px-7 py-3 rounded-full text-bg-300'><BiSolidUser className='mr-2' size='20'/>{descriptionData.description}</p>
                     </div>
                     <div className="flex flex-col ml-5 text-center gap-5">
-                        <p className='flex text-sm text-text-200 justify-start items-center'><BsGenderAmbiguous className='mr-5' size='22'/>Masculino</p>
-                        <p className='flex text-sm text-text-200 justify-start items-center'><BsCalendar3 className='mr-5' size='22'/>22/01/2023</p>
-                        <p className='flex text-sm text-text-200 justify-start items-center'><BsPhone className='mr-5' size='22'/>8292544578</p>
-                        <p className='flex text-sm text-text-200 justify-start items-center'><BsPersonVcard className='mr-5' size='22'/>003-1936322-7</p>
-                        <p className='flex text-sm text-text-200 justify-start items-center'><HiOutlineMail className='mr-5' size='22'/>JuPegro@gmail.com</p>
+                        <p className='flex text-sm text-text-200 justify-start items-center'><BsCalendar3 className='mr-5' size='22'/>{userData.birthDate}</p>
+                        <p className='flex text-sm text-text-200 justify-start items-center'><BsPhone className='mr-5' size='22'/>{userData.phone}</p>
+                        <p className='flex text-sm text-text-200 justify-start items-center'><BsPersonVcard className='mr-5' size='22'/>{userData.citizenId}</p>
+                        <p className='flex text-sm text-text-200 justify-start items-center'><HiOutlineMail className='mr-5' size='22'/>{userData.email}</p>
                     </div>
                 </div>
                 <div className="flex flex-col gap-5 mx-16 my-12">
                     <h3 className='font-bold text-text-100 text-4xl'>Detalles de la cuenta</h3>
-                    <form className="flex relative items-center gap-20 mt-6">
+                    <form onSubmit={handleUpdate} className="flex relative items-center gap-20 mt-6">
                         <div className="flex flex-col w-[27.5rem] gap-8">
                             <div className="flex flex-col gap-2">
                                 <span className='text-primary-200 font-medium'>Nombres</span>
-                                <input type="text" className='bg-bg-300 border-2 text-sm border-primary-300 shadow text-primary-100 shadow-primary-300 outline-none p-3 rounded-lg'/>
+                                <input defaultValue={userData.firstName} onChange={(e) => setUpdatedUserData({ ...updatedUserData, firstName: e.target.value })} type="text" className='bg-bg-300 border-2 text-sm border-primary-300 shadow text-primary-100 shadow-primary-300 outline-none p-3 rounded-lg'/>
                             </div>
                             <div className="flex flex-col gap-2">
                                 <span className='text-primary-200 font-medium'>Correo</span>
-                                <input type="text" className='bg-bg-300 border-2 text-sm border-primary-300 shadow text-primary-100 shadow-primary-300 outline-none p-3 rounded-lg'/>
+                                <input onChange={(e) => setUpdatedUserData({ ...updatedUserData, email: e.target.value })} defaultValue={userData.email} type="text" className='bg-bg-300 border-2 text-sm border-primary-300 shadow text-primary-100 shadow-primary-300 outline-none p-3 rounded-lg'/>
                             </div>
                             <div className="flex flex-col gap-2">
                                 <span className='text-primary-200 font-medium'>Télefono</span>
-                                <input type="text" className='bg-bg-300 border-2 text-sm border-primary-300 shadow text-primary-100 shadow-primary-300 outline-none p-3 rounded-lg'/>
+                                <input onChange={(e) => setUpdatedUserData({ ...updatedUserData, phone: e.target.value })} defaultValue={userData.phone} type="text" className='bg-bg-300 border-2 text-sm border-primary-300 shadow text-primary-100 shadow-primary-300 outline-none p-3 rounded-lg'/>
                             </div>
                             <div className="flex flex-col gap-2">
                                 <span className='text-primary-200 font-medium'>Fecha de Nacimiento</span>
-                                <input type="text" className='bg-bg-300 border-2 text-sm border-primary-300 shadow text-primary-100 shadow-primary-300 outline-none p-3 rounded-lg'/>
+                                <input onChange={(e) => setUpdatedUserData({ ...updatedUserData, birthDate: e.target.value })} defaultValue={userData.birthDate} type="datetime" className='bg-bg-300 border-2 text-sm border-primary-300 shadow text-primary-100 shadow-primary-300 outline-none p-3 rounded-lg'/>
                             </div>
                         </div>
                         <div className="flex flex-col w-[27.5rem] gap-8">
                             <div className="flex flex-col gap-2">
                                 <span className='text-primary-200 font-medium'>Apellidos</span>
-                                <input type="text" className='bg-bg-300 border-2 text-sm border-primary-300 shadow text-primary-100 shadow-primary-300 outline-none p-3 rounded-lg'/>
+                                <input onChange={(e) => setUpdatedUserData({ ...updatedUserData, lastName: e.target.value })} defaultValue={userData.lastName} type="text" className='bg-bg-300 border-2 text-sm border-primary-300 shadow text-primary-100 shadow-primary-300 outline-none p-3 rounded-lg'/>
                             </div>
                             <div className="flex flex-col gap-2">
                                 <span className='text-primary-200 font-medium'>Cédula</span>
-                                <input type="text" className='bg-bg-300 border-2 text-sm border-primary-300 shadow text-primary-100 shadow-primary-300 outline-none p-3 rounded-lg'/>
+                                <input onChange={(e) => setUpdatedUserData({ ...updatedUserData, citizenId: e.target.value })} defaultValue={userData.citizenId} type="text" className='bg-bg-300 border-2 text-sm border-primary-300 shadow text-primary-100 shadow-primary-300 outline-none p-3 rounded-lg'/>
                             </div>
                             <div className="flex flex-col gap-2">
-                                <span className='text-primary-200 font-medium'>Dirección</span>
-                                <input type="text" className='bg-bg-300 border-2 text-sm border-primary-300 shadow text-primary-100 shadow-primary-300 outline-none p-3 rounded-lg'/>
+                                <span className='text-primary-200 font-medium'>Estado</span>
+                                <select defaultValue={userData.isActive} name="isActive" id="isActive" className='bg-bg-300 border-2 text-sm border-primary-300 shadow text-primary-100 shadow-primary-300 outline-none p-3 rounded-lg'
+                                onChange={(e) =>
+                                    setUpdatedUserData({
+                                        ...updatedUserData,
+                                        roleId: e.target.value, // Actualiza el ID del rol seleccionado
+                                    })
+                                }>
+                                    <option selected={userData.isActive === true} value="1">Activo</option>
+                                    <option selected={userData.isActive === false} value="2">Desactivado</option>
+                                </select>
                             </div>
                             <div className="flex flex-col gap-2">
-                                <span className='text-primary-200 font-medium'>Genero</span>
-                                <input type="text" className='bg-bg-300 border-2 text-sm border-primary-300 shadow text-primary-100 shadow-primary-300 outline-none p-3 rounded-lg'/>
+                                <span className='text-primary-200 font-medium'>Contraseña</span>
+                                <input onChange={(e) => setUpdatedUserData({ ...updatedUserData, password: e.target.value })} defaultValue={userData.password} type="password" name='text' className='bg-bg-300 border-2 text-sm border-primary-300 shadow text-primary-100 shadow-primary-300 outline-none p-3 rounded-lg'/>
                             </div>
                         </div>
-                        <div className="absolute flex bottom-0 translate-y-36">
-                            <input type="file" id="real-file" className='hidden' />
-                            <label htmlFor='real-file' className="border-2 text-primary-200 font-medium rounded-xl cursor-pointer text-center border-dashed px-[28rem] py-6 shadow shadow-primary-300 border-primary-300">
-                                Subir Imagen
-                            </label>
-                        </div>
-                        <button className='absolute right-0 bottom-0 rounded-xl shadow-lg text-bg-300 shadow-primary-300 translate-y-52 b__gradient py-2 px-3'>Guardar</button>
+                        <button type='submit' className='absolute right-0 bottom-0 rounded-xl shadow-lg text-bg-300 shadow-primary-300 translate-y-20 tra b__gradient py-2 px-3'>Guardar</button>
                     </form>
                 </div>
             </div>
