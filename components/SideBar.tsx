@@ -2,13 +2,13 @@
 import React, { useState } from 'react';
 import Image from 'next/image'
 import Link from 'next/link'
-import { AiOutlineHome, AiFillHome } from "react-icons/ai";
-import { IoPersonOutline, IoPerson } from "react-icons/io5";
+import { AiOutlineHome, AiFillHome, AiOutlineInfoCircle, AiFillInfoCircle } from "react-icons/ai";
 import { TbMessageCircle2 } from "react-icons/tb";
 import { FiLogOut } from "react-icons/fi";
 import { useRouter, usePathname } from 'next/navigation';
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
-import { PiStethoscopeFill, PiStethoscopeBold , PiWheelchairDuotone, PiCalendarBlankDuotone, PiChartLine } from "react-icons/pi";
+import { BiUser, BiSolidUser } from "react-icons/bi";
+import { PiWheelchairDuotone, PiCalendarBlankDuotone, PiChartLine } from "react-icons/pi";
 
 const SideBar = () => {
 
@@ -22,14 +22,14 @@ const SideBar = () => {
         'title':'Dashboard'
         },
         {'link': '/dashboard/profile', 
-        'icon': <IoPersonOutline className='text-text-200 icon' size='24'/>,
-        'activeIcon': <IoPerson className='text-text-200 icon' size='24'/>,
+        'icon': <AiOutlineInfoCircle className='text-text-200 icon' size='24'/>,
+        'activeIcon': <AiFillInfoCircle className='text-text-200 icon' size='24'/>,
         'title':'Perfil'
         },
-        {'link': '/dashboard/doctor', 
-        'icon': <PiStethoscopeFill className='text-text-200 icon' size='24'/>,
-        'activeIcon': <PiStethoscopeBold className='text-text-200 icon' size='24'/>,
-        'title':'Doctores'
+        {'link': '/dashboard/user', 
+        'icon': <BiUser className='text-text-200 icon' size='24'/>,
+        'activeIcon': <BiSolidUser className='text-text-200 icon' size='24'/>,
+        'title':'Usuarios'
         },
         {'link': '/dashboard/ssss', 
         'icon': <PiWheelchairDuotone className='text-text-200 icon' size='24'/>,

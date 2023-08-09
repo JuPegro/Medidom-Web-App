@@ -3,40 +3,54 @@ import React, { useState, useEffect  } from 'react';
 import { BiPlus, BiSearch, BiSolidPhone, BiSolidEdit } from "react-icons/bi";
 import { MdEmail } from "react-icons/md";
 import Image from 'next/image';
-import { FaHospital } from "react-icons/fa";
+import { BsFillPersonVcardFill } from "react-icons/bs";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { ModalDoctorInfo } from '@/components';
 import axios, { AxiosResponse } from 'axios';
+import ModalUserEdit from '@/components/ModalUserEdit';
 
+const translateRole = (role: string): string => {
+    const translations: Record<string, string> = {
+        Patient: 'Paciente',
+        Doctor: 'Doctor',
+        Nurse: 'Enfermero',
+    
+    };
+    return translations[role] || role;
+};
 
 const page = () => {
 
     const [pagina, setPagina] = useState(1);
-    const [porPagina, setPorPagina] = useState();
-
-    // const maximo = Pokemons.lenght / porPagina;
+    const [porPagina] = useState(10);
 
     const [isModalOpen, setIsModalOpen] = useState(false);
-    // const [selectedDoctorId, setSelectedDoctorId] = useState<string | null>(null);
+    const [isDoctorModalOpen, setIsDoctorModalOpen] = useState(false);
+    const [selectedUser, setSelectedUser] = useState<any | null>(null);
 
-    const handleOpenModal = () => {
-        const doctorId = null;
-        // setSelectedDoctorId(doctorId);
+    const handleOpenModal = (user: any) => {
+        setSelectedUser(user);
         setIsModalOpen(true);
+    };
+
+    const handleOpenDoctorModal = () => {
+        setIsDoctorModalOpen(true);
     };
     
     const handleCloseModal = () => {
+        setSelectedUser(null);
         setIsModalOpen(false);
+        setIsDoctorModalOpen(false);
     };
 
-    const [userData, setUserData] = useState<any | null>(null);
+    const [userData, setUserData] = useState<any[]>([]);
 
     useEffect(() => {
         const getResquestWithAuthorization = async () => {
             try {
                 const response: AxiosResponse<any> = await axios.get('https://medi-dom-api.up.railway.app/api/v1/user', {
                     headers: {
-                        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJqZG9lQGRvbWFpbi5jb20iLCJpYXQiOjE2OTEzMzQ2MjgsImV4cCI6MTY5MTQyMTAyOH0.a0sAqyeQHU7RJFeLxb5vG5pdNmIgz3BN_sU1K1Uhj_s`,
+                        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJqZG9lQGRvbWFpbi5jb20iLCJpYXQiOjE2OTE1NDA5NjQsImV4cCI6MTY5MTYyNzM2NH0.hKNUwZamQ6T4dsjB0tmj2q82NI6L_VVUS5XNR8xnwPA`,
                 }
             });
                 console.log('API Response:', response.data);
@@ -49,6 +63,9 @@ const page = () => {
     
         getResquestWithAuthorization();
     }, []);
+
+    const indiceInicio = (pagina - 1) * porPagina;
+    const indiceFin = indiceInicio + porPagina;
 
     return (
         <div className="mx-20 w-11/12">
@@ -74,55 +91,61 @@ const page = () => {
                         <BiSearch className='mr-5 translate-x-14 text-primary-100' size='22'/>
                         <input type="text" placeholder='@nombre-doctor' className='py-2 pl-11 w-60 text-sm text-primary-200 border outline-none border-primary-300 shadow-lg shadow-primary-300 rounded-xl'/>
                     </div>
-                    <button onClick={handleOpenModal} className='b__gradient rounded-full shadow-lg shadow-primary-300'><BiPlus className=' text-bg-300 font-bold w-[2.4rem]' size='24'/></button>
+                    <button onClick={handleOpenDoctorModal} className='b__gradient rounded-full shadow-lg shadow-primary-300'><BiPlus className=' text-bg-300 font-bold w-[2.4rem]' size='24'/></button>
                 </div>
             </div>
             <div className="grid grid-cols-5 place-content-center gap-x-[1px] mt-24 gap-y-[4.8rem] ">
-            {userData ? (
-                <div>
-                <p>Nombre: {userData.email}</p>
-                <p>Email: {userData[0].id}</p>
-                {/* Mostrar otros datos según la estructura de userData */}
-                </div>
-            ) : (
-                <p>Cargando datos...</p>
-            )}
-            
-            <div className="flex border relative justify-center shadow-lg shadow-primary-300 flex-col items-center border-primary-300 w-[14.5rem] h-56 rounded-2xl">
+            {userData.slice(indiceInicio, indiceFin).map((user) => (
+                <div key={user.id} className="flex border relative justify-center shadow-lg shadow-primary-300 flex-col items-center border-primary-300 w-[14.5rem] h-56 rounded-2xl">
                     <div className="absolute top-0 -translate-y-16">
                         <Image src='/paisaje.jpg' width={500} height={500} alt='img' className='w-32 h-32 border-[3px] border-primary-300 p-[1px] rounded-full'></Image>
                     </div>
-                    <div className="flex top-4 justify-between absolute gap-40">
-                    <button onClick={handleOpenModal}>
+                    <div className="flex top-3 right-3 absolute">
+                    <button onClick={() => handleOpenModal(user)}>
                         <BiSolidEdit className="text-primary-100" size="22" />
                     </button>
                     </div>
                     <div className="flex flex-col relative mt-12 text-center mb-4 gap-2">
-                        <p className=' text-text-100 font-bold text-lg'>Julio Peguero</p>
-                        <p className='text-sm -px-2 py-1 text-bg-300 bg-primary-100 rounded-lg'>Cirujano</p>
+                        <input type="hidden" value={user.id} />
+                        <p className=' text-text-100 font-bold text-lg'>{user.firstName} {user.lastName}</p>
+                        <p className='text-sm py-1 w-full text-bg-300 bg-primary-100 rounded-lg'>{translateRole(user.role.description)}</p>
                     </div>
                     <div className="flex flex-col gap-2">
                         <div className="flex text-xs gap-2 text-text-200">
                             <BiSolidPhone className=' text-text-200' size='14'/>
-                            <p>(809) 255-1547</p>
+                            <p>{user.phone}</p>
                         </div>
                         <div className="flex text-xs gap-2 text-text-200">
                             <MdEmail className=' text-text-200' size='14'/>
-                            <p>Elcirujano@gmail.com</p>
+                            <p>{user.email}</p>
                         </div>
                         <div className="flex text-xs gap-2 text-text-200">
-                            <FaHospital className=' text-text-200' size='14'/>
-                            <p>Dario Contreras, SDE</p>
+                            <BsFillPersonVcardFill className=' text-text-200' size='14'/>
+                            <p>{user.citizenId}</p>
                         </div>
                     </div>
                 </div>
-            </div>
+            ))}                   
             <div className="absolute flex items-center bottom-3 gap-3 transform -translate-x-1/2 left-1/2">
-                <button className='b__gradient py-2 px-2 rounded-md shadow-md shadow-primary-300'><FaArrowLeft className=' text-bg-300' size='14'/></button>
-                <p className=' bg-bg-300 border shadow-md shadow-primary-300 border-primary-300 py-[2px] px-5 font-black rounded-md text-primary-200'>1</p>
-                <button className='b__gradient py-2 px-2 rounded-md shadow-md shadow-primary-300'><FaArrowRight className=' text-bg-300' size='14'/></button>
+                <button
+                    className='b__gradient py-2 px-2 rounded-md shadow-md shadow-primary-300'
+                    onClick={() => setPagina((prevPagina) => Math.max(prevPagina - 1, 1))}
+                >
+                    <FaArrowLeft className='text-bg-300' size='14'/>
+                </button>
+                <p className='bg-bg-300 border shadow-md shadow-primary-300 border-primary-300 py-[2px] px-5 font-black rounded-md text-primary-200'>
+                    {pagina}
+                </p>
+                <button
+                    className='b__gradient py-2 px-2 rounded-md shadow-md shadow-primary-300'
+                    onClick={() => setPagina((prevPagina) => Math.min(prevPagina + 1, Math.ceil(userData.length / porPagina)))}
+                >
+                <FaArrowRight className='text-bg-300' size='14'/>
+                </button>
             </div>
-            <ModalDoctorInfo isOpen={isModalOpen} onClose={handleCloseModal} />
+            </div>
+            <ModalUserEdit isOpen={isModalOpen} onClose={handleCloseModal} selectedUser={selectedUser} />
+            <ModalDoctorInfo isOpen={isDoctorModalOpen} onClose={handleCloseModal} />
         </div>
     )
 }
