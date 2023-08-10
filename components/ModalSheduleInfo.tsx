@@ -14,6 +14,9 @@ const ModalSheduleInfo: FC<ModalProps> = ({ isOpen, onClose}) => {
         return null
     }
 
+    const userToken = localStorage.getItem("token");
+    const userID = localStorage.getItem("userID");
+
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
@@ -31,7 +34,7 @@ const ModalSheduleInfo: FC<ModalProps> = ({ isOpen, onClose}) => {
                     endTime: formData.get("endTime"),
                 },{
                     headers: {
-                        Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJqZG9lQGRvbWFpbi5jb20iLCJpYXQiOjE2OTE2Mjc0NjcsImV4cCI6MTY5MTcxMzg2N30.hYD0JMUxoVVwmXwzhEE-uCO5hxzQBA4svEc7BBYsx64', // Replace with your actual token
+                        Authorization: `Bearer ${userToken}`, // Replace with your actual token
                         'Content-Type': 'application/json'
                     }
                 },

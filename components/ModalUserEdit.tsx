@@ -15,13 +15,14 @@ const ModalUserEdit: React.FC<ModalDoctorInfoProps> = ({ isOpen, onClose, select
         return null;
     }
     
-    const router = useRouter();
+
+
     const [error, setError] = useState();
     const [updatedUserData, setUpdatedUserData] = useState({});
     const handleUpdate = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         
-        const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJqZG9lQGRvbWFpbi5jb20iLCJpYXQiOjE2OTE1MzU2MDgsImV4cCI6MTY5MTYyMjAwOH0.pcV1b899nC2uhUf50Adl-c2RIpPV1G9v5F99-jlNvZY'; // Reemplaza con tu token de autenticación
+        const accessToken = localStorage.getItem("token"); // Reemplaza con tu token de autenticación
         const headers = {
             'Authorization': `Bearer ${accessToken}`
         };

@@ -9,17 +9,6 @@ import ModalSheduleInfo from '@/components/ModalSheduleInfo';
 import { TbBrandDaysCounter } from "react-icons/tb";
 import { LuTimerOff } from "react-icons/lu";
 
-
-/*const translateRole = (role: string): string => {
-    const translations: Record<string, string> = {
-        Patient: 'Paciente',
-        Doctor: 'Doctor',
-        Nurse: 'Enfermero',
-    
-    };
-    return translations[role] || role;
-};*/
-
 const page = () => {
 
     const [pagina, setPagina] = useState(1);
@@ -46,12 +35,22 @@ const page = () => {
 
     const [shedulerData, setSheduleData] = useState<any[]>([]);
 
+    const userToken = localStorage.getItem("token") || "";
+    const userID = localStorage.getItem("userID") || "";
+    const username = localStorage.getItem("Username") || "";
+
     useEffect(() => {
+
+        if(!userID || !userToken){
+            localStorage.clear();
+            window.location.href = '/login';
+          //router.push("/login");
+        }
         const getResquestWithAuthorization = async () => {
             try {
                 const response: AxiosResponse<any> = await axios.get('https://medi-dom-api.up.railway.app/api/v1/schedule', {
                     headers: {
-                        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJqZG9lQGRvbWFpbi5jb20iLCJpYXQiOjE2OTE2Mjc0NjcsImV4cCI6MTY5MTcxMzg2N30.hYD0JMUxoVVwmXwzhEE-uCO5hxzQBA4svEc7BBYsx64`,
+                        Authorization: `Bearer ${userToken}`,
                 }
             });
                 console.log('API Response:', response.data);
@@ -71,7 +70,7 @@ const page = () => {
     return (
         <div className="mx-20 w-11/12">
             <div className='flex gap-2 text-4xl mt-10'>
-                <h2 className='text__gradient font-black'>Horarios</h2><p className='text-text-200 font-semibold'></p>
+                <h2 className='text__gradient font-black'>Horarios</h2><p className='text-text-200 font-semibold'>{username}</p>
             </div>
             <div className="mt-14 flex justify-between items-center">
                 <div className="flex justify-center items-center gap-5">

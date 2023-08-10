@@ -1,9 +1,8 @@
 'use client'
-import { FC , FormEvent } from 'react';
+import { FC , FormEvent, useEffect } from 'react';
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import axios, { AxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
-import { parse } from 'path';
 
 interface ModalProps {
     isOpen: boolean;
@@ -16,17 +15,27 @@ const ModalDoctorInfo: FC<ModalProps> = ({ isOpen, onClose}) => {
         return null
     }
 
-    //const [error, setError] = useState();
+    const userToken = localStorage.getItem("token");
+    const userID = localStorage.getItem("userID");
+
+    useEffect(() => {
+    
+        if(!userID || !userToken){
+            localStorage.clear();
+            window.location.href = '/login';
+          //router.push("/login");
+        }
+    
+    
+    }, []);
+
     const router = useRouter();
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
         const formData = new FormData(e.currentTarget)
-console.log(formData)
-       // const roleIdValue = formData.get("roleId")
-
-        //const roleIdNumber = parseInt(roleIdValue, 10)
+        console.log(formData)
 
         try {
             const res = await axios.post(
@@ -44,16 +53,10 @@ console.log(formData)
                     doctorTypeId: 1
                 },{
                     headers: {
-                        Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJqZG9lQGRvbWFpbi5jb20iLCJpYXQiOjE2OTE1NDA5NjQsImV4cCI6MTY5MTYyNzM2NH0.hKNUwZamQ6T4dsjB0tmj2q82NI6L_VVUS5XNR8xnwPA', // Replace with your actual token
+                        Authorization: `Bearer ${userToken}`, // Replace with your actual token
                         'Content-Type': 'application/json'
-                    }},
-                    /*headers: {
-                        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJqZG9lQGRvbWFpbi5jb20iLCJpYXQiOjE2OTE0NTAwMjIsImV4cCI6MTY5MTUzNjQyMn0.wWp4bMJdl-RW2NYcpm-mvw6AAEhRIFcLPhcLWy2UmNs`,
-                        'Content-Type': 'application/json',
-                        /*'Content-Type': 'multipart/form-data',*/
-                        /*'Content-Type': 'application/x-www-form-urlencoded'
-                    },*/
-                
+                    }
+                },
             );
     
             console.log('API Response:', res.data)

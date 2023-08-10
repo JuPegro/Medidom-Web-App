@@ -13,9 +13,7 @@ const Login = () => {
     const router = useRouter();
 
     useEffect(() => {
-    // Redirigir a la página de inicio de sesión si no hay un userID en el localStorage
-    localStorage.removeItem('token');
-    localStorage.removeItem('userID');
+    localStorage.clear();
 });
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -30,12 +28,26 @@ const Login = () => {
             });
             console.log(res);
             const { token, user } = res.data.data;
-
+            const userRole = user.role.description
             localStorage.setItem('token', token);
             localStorage.setItem('userID', user.id);
-            localStorage.setItem('Username', user.firstName + user.lastName)
+            localStorage.setItem('Username', user.firstName + " " + user.lastName)
+            localStorage.setItem("UserLastname",user.lastName)
 
-            router.push('/dashboard/home');
+            switch (userRole) {
+                case 'Patient':
+                    router.push('/hjhjhjhjjh');
+                    break;
+                case 'Admin':
+                    router.push('/dashboard/home');
+                    break;
+                case 'Doctor':
+                    router.push('/doctors/home');
+                    break;
+                default:
+                    window.location.reload()
+            }
+
         } catch (error) {
             console.log(error);
             if (error instanceof AxiosError) {

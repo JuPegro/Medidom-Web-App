@@ -21,7 +21,7 @@ const ModalSheduleEdit: React.FC<ModalDoctorInfoProps> = ({ isOpen, onClose, sel
     const handleUpdate = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         
-        const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJqZG9lQGRvbWFpbi5jb20iLCJpYXQiOjE2OTE2Mjc0NjcsImV4cCI6MTY5MTcxMzg2N30.hYD0JMUxoVVwmXwzhEE-uCO5hxzQBA4svEc7BBYsx64'; // Reemplaza con tu token de autenticación
+        const accessToken = localStorage.getItem("token");
         const headers = {
             'Authorization': `Bearer ${accessToken}`
         };

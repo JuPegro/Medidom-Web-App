@@ -12,12 +12,24 @@ const page = () => {
     const [userData, setUserData] = useState<any>({});
     const [descriptionData, SetDescription] = useState<any>({});
 
+    //INFORMACION LOCAL
+    const userToken = localStorage.getItem("token") || "";
+    const userID = localStorage.getItem("userID") || "";
+    const username = localStorage.getItem("Username") || "";
+
+
     useEffect(() => {
+        if(!userID || !userToken){
+            localStorage.clear();
+            window.location.href = '/login';
+          //router.push("/login");
+        }
+
         const getResquestWithAuthorization = async () => {
             try {
-                const response: AxiosResponse<any> = await axios.get('https://medi-dom-api.up.railway.app/api/v1/user?id=15', {
+                const response: AxiosResponse<any> = await axios.get(`https://medi-dom-api.up.railway.app/api/v1/user?id=${userID}`, {
                     headers: {
-                        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJqZG9lQGRvbWFpbi5jb20iLCJpYXQiOjE2OTE1NDA5NjQsImV4cCI6MTY5MTYyNzM2NH0.hKNUwZamQ6T4dsjB0tmj2q82NI6L_VVUS5XNR8xnwPA`,
+                        Authorization: `Bearer ${userToken}`,
                 }
             });
                 console.log('API Response:', response.data);
@@ -37,13 +49,13 @@ const page = () => {
     const handleUpdate = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         
-        const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJqZG9lQGRvbWFpbi5jb20iLCJpYXQiOjE2OTE1MzU2MDgsImV4cCI6MTY5MTYyMjAwOH0.pcV1b899nC2uhUf50Adl-c2RIpPV1G9v5F99-jlNvZY'; // Reemplaza con tu token de autenticación
+        const accessToken = `${userToken}`; // Reemplaza con tu token de autenticación
         const headers = {
             'Authorization': `Bearer ${accessToken}`
         };
     
         try {
-            const response = await axios.patch(`https://medi-dom-api.up.railway.app/api/v1/user/15`, updatedUserData, {
+            const response = await axios.patch(`https://medi-dom-api.up.railway.app/api/v1/user/${userID}`, updatedUserData, {
                 headers: headers
             });
             console.log('Usuario actualizado:', response.data);
@@ -61,16 +73,16 @@ const page = () => {
     return (
         <div className="mx-20 w-11/12">
             <div className='flex gap-2 text-4xl mt-10'>
-                <h2 className='text__gradient font-black'>Bienvenido,</h2><p className='text-text-200 font-semibold'>JuPegro._</p>
+                <h2 className='text__gradient font-black'>Bienvenido,</h2><p className='text-text-200 font-semibold'>{username}</p>
             </div>
             <div className="flex">
                 <div className="flex flex-col items-center top-0 text-center gap-6 justify-center mt-12 h-[45rem] w-[24rem] rounded-xl border-2 shadow-lg shadow-primary-300 border-primary-300">
                     <div className="flex items-center justify-center relative">
                         <Image src='/paisaje.jpg' alt='user__photo' width={280} height={280} className='w-[16rem] h-[16rem] border-2 border-primary-300 p-1 rounded-full'/>
                     </div>
-                    <div className="flex flex-col gap-5 text-text-100 py-3">
+                    <div className="flex flex-col gap-5 text-center text-text-100 py-3">
                         <h3 className='text-3xl font-bold'>{userData.firstName} {userData.lastName}</h3>
-                        <p className='text-lg flex items-center justify-between b__gradient px-7 py-3 rounded-full text-bg-300'><BiSolidUser className='mr-2' size='20'/>{descriptionData.description}</p>
+                        <p className='text-lg flex items-center justify-center b__gradient py-3 rounded-full text-bg-300'><BiSolidUser className='mr-2' size='20'/>{descriptionData.description}</p>
                     </div>
                     <div className="flex flex-col ml-5 text-center gap-5">
                         <p className='flex text-sm text-text-200 justify-start items-center'><BsCalendar3 className='mr-5' size='22'/>{userData.birthDate}</p>
@@ -97,7 +109,7 @@ const page = () => {
                             </div>
                             <div className="flex flex-col gap-2">
                                 <span className='text-primary-200 font-medium'>Fecha de Nacimiento</span>
-                                <input onChange={(e) => setUpdatedUserData({ ...updatedUserData, birthDate: e.target.value })} defaultValue={userData.birthDate} type="datetime" className='bg-bg-300 border-2 text-sm border-primary-300 shadow text-primary-100 shadow-primary-300 outline-none p-3 rounded-lg'/>
+                                <input onChange={(e) => setUpdatedUserData({ ...updatedUserData, birthDate: e.target.value })} defaultValue={userData.birthDate} type="date" className='bg-bg-300 border-2 text-sm border-primary-300 shadow text-primary-100 shadow-primary-300 outline-none p-3 rounded-lg'/>
                             </div>
                         </div>
                         <div className="flex flex-col w-[27.5rem] gap-8">
