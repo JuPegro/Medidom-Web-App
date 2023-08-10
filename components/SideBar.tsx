@@ -8,7 +8,7 @@ import { FiLogOut } from "react-icons/fi";
 import { useRouter, usePathname } from 'next/navigation';
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { BiUser, BiSolidUser } from "react-icons/bi";
-import { PiWheelchairDuotone, PiCalendarBlankDuotone, PiChartLine } from "react-icons/pi";
+import { PiCalendarBlankFill, PiChartLineBold , PiCalendarBlankDuotone, PiChartLine } from "react-icons/pi";
 
 const SideBar = () => {
 
@@ -31,27 +31,20 @@ const SideBar = () => {
         'activeIcon': <BiSolidUser className='text-text-200 icon' size='24'/>,
         'title':'Usuarios'
         },
-        {'link': '/dashboard/ssss', 
-        'icon': <PiWheelchairDuotone className='text-text-200 icon' size='24'/>,
-        'title':'Pacientes'
-        },
-        {'link': '/dashboard/ssssaa', 
+        {'link': '/dashboard/shedule', 
         'icon': <PiCalendarBlankDuotone className='text-text-200 icon' size='24'/>,
+        'activeIcon': <PiCalendarBlankFill className='text-text-200 icon' size='24'/>,
         'title':'Horarios'
         },
-        {'link': '/dashboard/sasassd', 
+        {'link': '/dashboard/consult', 
         'icon': <PiChartLine className='text-text-200 icon' size='24'/>,
-        'title':'Resultados'
+        'activeIcon': <PiChartLineBold className='text-text-200 icon' size='24'/>,
+        'title':'Consultas'
         },
         {'link': '/dashboard/ddsds', 
         'icon': <TbMessageCircle2 className='text-text-200 icon' size='24'/>,
         'title':'Mensajes',
-        },
-        {'link': '/dashboard/dsdsd', 
-        'icon': <MdOutlineAdminPanelSettings className='text-text-200 icon' size='24'/>,
-        'title':'Administradores'
-        },
-        
+        }
     ]
 
     const handleLogout = () => {

@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 import Services from "./Services";
 import SideBar from "./SideBar";
 import ModalDoctorInfo from "./ModalDoctorInfo";
+import ModalSheduleInfo from "./ModalSheduleInfo"
 
 export {
     Medidom,
@@ -14,4 +15,5 @@ export {
     Services,
     SideBar,
     ModalDoctorInfo,
+    ModalSheduleInfo
 }
